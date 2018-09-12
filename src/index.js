@@ -1,35 +1,35 @@
 module.exports = function check(str, bracketsConfig) {
   var stack = [];
 
-for(var i = 0; i < str.length; i++) {
-	for(var j = 0; j < bracketsConfig.length; j++) {
-		if(str[i] === bracketsConfig[j][0] && bracketsConfig[j][0] != bracketsConfig[j][1]) {
-      stack.push(str[i]);
-		} else if(str[i] === bracketsConfig[j][1] && bracketsConfig[j][0] != bracketsConfig[j][1]) {
-      var last = stack.pop();
-			if(last === bracketsConfig[j][0] && str[i] === bracketsConfig[j][1]) {
-			} else {
-				return false
-			} 
-		}else if (str[i] === bracketsConfig[j][0] && bracketsConfig[j][0] === bracketsConfig[j][1]) { 
-			if(prev === bracketsConfig[j][0] && str[i] === bracketsConfig[j][1]) {
-        var lastMatch = stack.pop();
-        prev = str[i];
-				if(lastMatch === bracketsConfig[j][0] && str[i] === bracketsConfig[j][1]) {
-				} else {
-					return false
-				} 
-			} else {
+  for(var i = 0; i < str.length; i++) {
+    for(var j = 0; j < bracketsConfig.length; j++) {
+      if(str[i] === bracketsConfig[j][0] && bracketsConfig[j][0] != bracketsConfig[j][1]) {
         stack.push(str[i]);
-        var prev = str[i];
+      } else if(str[i] === bracketsConfig[j][1] && bracketsConfig[j][0] != bracketsConfig[j][1]) {
+        var last = stack.pop();
+        if(last === bracketsConfig[j][0] && str[i] === bracketsConfig[j][1]) {
+        } else {
+          return false
+        } 
+      }else if (str[i] === bracketsConfig[j][0] && bracketsConfig[j][0] === bracketsConfig[j][1]) { 
+        if(prev === bracketsConfig[j][0] && str[i] === bracketsConfig[j][1]) {
+          var lastMatch = stack.pop();
+          prev = null;
+          if(lastMatch === bracketsConfig[j][0] && str[i] === bracketsConfig[j][1]) {
+          } else {
+            return false
+          } 
+        } else {
+          stack.push(str[i]);
+          var prev = str[i];
+        }
+        
       }
     }
-	}
-}
-  if (stack.length !== 0) {
-    return false;
-  } {
-    return true;
   }
-
+    if (stack.length !== 0) {
+      return false;
+    } {
+      return true;
+    }
 }
