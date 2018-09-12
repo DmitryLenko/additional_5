@@ -11,7 +11,20 @@ for(var i = 0; i < str.length; i++) {
 			} else {
 				return false
 			} 
-		}
+		}else if (str[i] === bracketsConfig[j][0] && bracketsConfig[j][0] === bracketsConfig[j][1]) { 
+			if(prev === bracketsConfig[j][0] && str[i] === bracketsConfig[j][1]) {
+        var lastMatch = stack.pop();
+        prev = str[i];
+				if(lastMatch === bracketsConfig[j][0] && str[i] === bracketsConfig[j][1]) {
+				} else {
+					return false
+				} 
+			} else {
+        stack.push(str[i]);
+        var prev = str[i];
+      }
+    }
+	}
 }
   if (stack.length !== 0) {
     return false;
